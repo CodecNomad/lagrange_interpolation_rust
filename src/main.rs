@@ -15,7 +15,7 @@ fn interpolate(x: f32, weights: Vec<Vec2>) -> f32 {
 
     let mut value = 0f32;
     for j in 0..k {
-        let mut l = f32::NAN;
+        let mut l = 1.0;
 
         fn calculate(x: f32, m: usize, j: usize, weights: Vec<Vec2>) -> f32 {
             (x - weights[m].x) / (weights[j].x - weights[m].x)
@@ -27,11 +27,6 @@ fn interpolate(x: f32, weights: Vec<Vec2>) -> f32 {
             }
 
             let value = calculate(x, m, j, weights.clone());
-
-            if l.is_nan() {
-                l = value;
-                continue;
-            }
 
             l *= value
         }
