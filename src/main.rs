@@ -17,7 +17,7 @@ fn interpolate(x: f32, weights: Vec<Vec2>) -> f32 {
     for j in 0..k {
         let mut l = 1.0;
 
-        fn calculate(x: f32, m: usize, j: usize, weights: Vec<Vec2>) -> f32 {
+        fn calculate(x: f32, m: usize, j: usize, weights: &[Vec2]) -> f32 {
             (x - weights[m].x) / (weights[j].x - weights[m].x)
         }
 
@@ -26,7 +26,7 @@ fn interpolate(x: f32, weights: Vec<Vec2>) -> f32 {
                 continue;
             }
 
-            let value = calculate(x, m, j, weights.clone());
+            let value = calculate(x, m, j, &weights);
 
             l *= value
         }
